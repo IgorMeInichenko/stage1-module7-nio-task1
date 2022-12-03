@@ -14,6 +14,26 @@ public class FileReader {
         }
         return result;
     }
+    public Integer checkAge (String value){
+        Integer correctAge = 0;
+        try{
+            correctAge = Integer.valueOf(value);
+        }
+        catch (Exception e){
+            correctAge = null;
+        }
+        return correctAge;
+    }
+    public Long checkNumber (String value){
+        Long correctNumber = 0L;
+        try{
+            correctNumber = Long.valueOf(value);
+        }
+        catch (Exception e){
+            correctNumber = null;
+        }
+        return correctNumber;
+    }
 
     public Profile getDataFromFile(File file){
         Integer correctAge = 0;
@@ -26,18 +46,8 @@ public class FileReader {
             String[] ageLine = myReadLine(reader).split(": ");
             emailLine = myReadLine(reader).split(": ");
             String[] phoneLine = myReadLine(reader).split(": ");
-            try{
-                correctAge = Integer.valueOf(ageLine[1]);
-            }
-            catch (Exception e){
-                correctAge = null;
-            }
-            try {
-                correctNumber = Long.valueOf(phoneLine[1]);
-            }
-            catch (Exception e){
-                correctNumber = null;
-            }
+            correctAge = checkAge(ageLine[1]);
+            correctNumber = checkNumber(phoneLine[1]);
         }
         catch (IOException e){
             e.printStackTrace();
